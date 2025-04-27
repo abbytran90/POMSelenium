@@ -8,11 +8,55 @@
   <name>selenium-pom-project</name>
   <url>http://maven.apache.org</url>
   <dependencies>
+    <!-- Selenium
+      ➔This is the core library that allows you to interact with browsers, such as clicking, entering text, retrieving text, 
+      and validating elements
+      ➔In POM, each Page Class will need Selenium to define and interact with WebElements
+    -->
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-java</artifactId>
+      <version>4.19.1</version>
+    </dependency>
+    <!--TestNG
+      ➔TestNG is a framework for managing test case. It allows:
+        -Writing @Test, @BeforeClass, @AfterClass
+        -Running multiple test classes simultaneously
+        -Managing assertions (Comparing expected, actual results)
+        -Reporting test results 
+    -->
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>7.9.0</version>
       <scope>test</scope>
     </dependency>
+    <!--WebDriverManager
+      ➔This tool automatically download and sets up driver (ChromeDriver, GeckoDriver, EdgeDriver)
+      ➔Without it: you would have to manually download the driver files, install the correct version and
+        specify the correct path
+      ➔With WebDriverManager: you only need a single line of code, and WebDiverManager will automatically select the
+        appropriate driver based on the current browser and version
+    -->
+    <dependency>
+      <groupId>io.github.bonigarcia</groupId>
+      <artifactId>webdrivermanager</artifactId>
+      <version>5.8.0</version>
+    </dependency>  
   </dependencies>
+
+  <build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>2.22.2</version>
+            <configuration>
+                <includes>
+                    <include>**/*Test.java</include>
+                </includes>
+            </configuration>
+        </plugin>
+    </plugins>
+  </build>
 </project>
